@@ -10,6 +10,16 @@ export const ROUTE_CONFIGS = [
     exact: true,
   },
   {
+    path: "new-product",
+    component: () => import("../pages/new-product.tsx"),
+    exact: true,
+  },
+  {
+    path: "product/:id",
+    component: () => import("../pages/edit-product.tsx"),
+    exact: true,
+  },
+  {
     path: "*",
     component: () => import("../pages/404.tsx"),
     exact: false,
