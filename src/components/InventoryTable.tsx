@@ -8,8 +8,19 @@ import {
   TableRow,
 } from "./ui/table";
 import { Pencil, Trash2 } from "lucide-react";
+import { Button } from "./ui/button";
+import { deleteProduct } from "@/services/product-service";
 
 const InventoryTable = ({ products }: { products: any[] }) => {
+  const deleteProductHandler = async (productId: string) => {
+    try {
+      // Call the deleteProduct service function
+      await deleteProduct(productId);
+      // Optionally, you can add logic to refresh the product list after deletion
+    } catch (error) {
+      console.error("Error deleting product in table:", error);
+    }
+  };
   return (
     <Table border={1} className="w-full mt-4 border-collapse border rounded-lg">
       <TableHeader className="overflow-hidden bg-gray-100">
@@ -36,7 +47,13 @@ const InventoryTable = ({ products }: { products: any[] }) => {
               <Link to={`/product/${product.id}`} style={{ color: "inherit" }}>
                 <Pencil size={16} className="cursor-pointer" />
               </Link>
-              <Trash2 size={16} color="red" className="cursor-pointer" />
+              <Button
+                variant="link"
+                className="p-0 m-0 cursor-pointer"
+                onClick={() => deleteProductHandler(product.id)}
+              >
+                <Trash2 size={16} color="red" />
+              </Button>
             </TableCell>
           </TableRow>
         ))}

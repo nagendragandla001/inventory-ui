@@ -31,3 +31,19 @@ export const fetchProducts = async () => {
     throw error;
   }
 };
+
+export const deleteProduct = async (productId: string) => {
+  const URL = `${import.meta.env.VITE_API_URL}/api/products/${productId}`;
+  try {
+    const response = await fetch(URL, {
+      method: "DELETE",
+    });
+    if (!response.ok) {
+      throw new Error("Failed to delete product");
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error deleting product:", error);
+    throw error;
+  }
+};
