@@ -1,4 +1,3 @@
-import React from "react";
 import { createProduct } from "../services/product-service";
 import {
   Card,
