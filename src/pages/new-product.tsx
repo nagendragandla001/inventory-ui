@@ -1,16 +1,22 @@
-import {
-  Alert,
-  Box,
-  Button,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  Snackbar,
-  TextField,
-} from "@mui/material";
 import React from "react";
 import { createProduct } from "../services/product-service";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Field, FieldError, FieldLabel } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
 
 const NewProductPage = () => {
   const [productName, setProductName] = React.useState("");
@@ -54,93 +60,64 @@ const NewProductPage = () => {
 
   return (
     <>
-      <Box
-        component="form"
-        sx={{ "& .MuiTextField-root": { m: 1, width: "40ch" } }}
-        noValidate
-        autoComplete="off"
-      >
-        <div>
-          <TextField
-            required
-            id="outlined-required"
-            label="Product Name"
-            value={productName}
-            onChange={(e) => setProductName(e.target.value)}
-          />
-          <TextField
-            id="outlined-disabled"
-            label="SKU"
-            value={sku}
-            onChange={(e) => setSku(e.target.value)}
-          />
-          <TextField
-            id="outlined-password-input"
-            label="Category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          />
-          <TextField
-            type="number"
-            label="Quantity"
-            value={quantity}
-            onChange={(e) => setQuantity(Number(e.target.value))}
-          />
-          <TextField
-            type="number"
-            label="Price"
-            value={price}
-            onChange={(e) => setPrice(Number(e.target.value))}
-          />
-          <FormControl fullWidth sx={{ m: 1, width: "40ch" }}>
-            <InputLabel id="demo-simple-select-label">Stock</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={stock}
-              label="Stock"
-              onChange={(e) => {
-                console.log(e.target.value);
-                setStock(e.target.value);
-              }}
-            >
-              <MenuItem value="IN_STOCK">In Stock</MenuItem>
-              <MenuItem value="LOW_STOCK">Low Stock</MenuItem>
-              <MenuItem value="OUT_OF_STOCK">Out of Stock</MenuItem>
-              <MenuItem value="DISCONTINUED">Discontinued</MenuItem>
-              <MenuItem value="UNAVAILABLE">Unavailable</MenuItem>
-            </Select>
-          </FormControl>
-        </div>
-        <div>
-          <Button
-            variant="contained"
-            color="primary"
-            sx={{ m: 1 }}
-            onClick={handleSubmit}
-          >
-            Save Product
-          </Button>
-          <Button variant="outlined" color="secondary" sx={{ m: 1 }}>
-            Cancel
-          </Button>
-        </div>
-      </Box>
-      <Snackbar
-        open={open}
-        autoHideDuration={6000}
-        onClose={handleClose}
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      >
-        <Alert
-          onClose={handleClose}
-          severity="success"
-          variant="filled"
-          sx={{ width: "100%" }}
-        >
-          Product created successfully!
-        </Alert>
-      </Snackbar>
+      <div className="w-full flex justify-center mb-4">
+        <Card className="w-full max-w-md">
+          <CardHeader>
+            <CardTitle>Add a new Product</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <form className="space-y-4">
+              <Field>
+                <FieldLabel htmlFor="product">Product</FieldLabel>
+                <Input
+                  id="product"
+                  placeholder="Enter a Product Name"
+                  required
+                />
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="sku">SKU</FieldLabel>
+                <Input id="sku" placeholder="Enter a SKU" required />
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="category">Category</FieldLabel>
+                <Input id="category" placeholder="Enter a Category" required />
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="quantity">Quantity</FieldLabel>
+                <Input id="quantity" placeholder="Enter a Quantity" required />
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="price">Price</FieldLabel>
+                <Input id="price" placeholder="Enter a Price" required />
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="stock">Stock</FieldLabel>
+                <Select defaultValue="IN_STOCK">
+                  <SelectTrigger id="cstock">
+                    <SelectValue placeholder="Select the Stock" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="IN_STOCK">In Stock</SelectItem>
+                    <SelectItem value="LOW_STOCK">Low Stock</SelectItem>
+                    <SelectItem value="OUT_OF_STOCK">Out of Stock</SelectItem>
+                    <SelectItem value="DISCONTINUED">Discontinued</SelectItem>
+                    <SelectItem value="UNAVAILABLE">Unavailable</SelectItem>
+                  </SelectContent>
+                </Select>
+              </Field>
+            </form>
+          </CardContent>
+          <CardFooter className="flex justify-end gap-2">
+            <Button variant="secondary" className="cursor-pointer">
+              Cancel
+            </Button>
+            <Button onClick={handleSubmit} className="cursor-pointer">
+              Save Product
+            </Button>
+          </CardFooter>
+        </Card>
+      </div>
     </>
   );
 };

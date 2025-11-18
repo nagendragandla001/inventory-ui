@@ -1,71 +1,55 @@
-import { Grid, Paper } from "@mui/material";
-import ListAltOutlinedIcon from "@mui/icons-material/ListAltOutlined";
-import TrendingUpOutlinedIcon from "@mui/icons-material/TrendingUpOutlined";
+import { NotebookPen, TrendingUp } from "lucide-react";
 const InventoryStats = () => {
   const PRODUCT_STATS = [
     {
       id: "total-products",
       title: "Total Products",
       value: 1500,
-      icon: <ListAltOutlinedIcon fontSize="large" />,
+      icon: <NotebookPen />,
       color: "#3f51b5",
     },
     {
       id: "total-items",
       title: "Total items",
       value: 4500,
-      icon: <TrendingUpOutlinedIcon fontSize="large" />,
+      icon: <TrendingUp />,
       color: "#009688",
     },
     {
       id: "out-of-stock",
       title: "Out of Stock",
       value: 200,
-      icon: <ListAltOutlinedIcon fontSize="large" />,
+      icon: <NotebookPen />,
       color: "#f44336",
     },
     {
       id: "low-stock",
       title: "Low Stock",
       value: 150,
-      icon: <TrendingUpOutlinedIcon fontSize="large" />,
+      icon: <NotebookPen />,
       color: "#ff9800",
     },
   ];
   return (
-    <Grid
-      container
-      spacing={{ xs: 2, md: 4 }}
-      columns={{ xs: 1, sm: 4, lg: 12 }}
-      sx={{ marginTop: 2, marginBottom: 4, paddingLeft: 2, paddingRight: 2 }}
-    >
+    <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4 mb-8 px-2">
       {PRODUCT_STATS.map((stat) => (
-        <Grid key={stat.id} size={{ xs: 2, sm: 4, md: 3 }}>
-          <Paper
-            key={stat.id}
-            elevation={3}
-            style={{
-              padding: 16,
-              textAlign: "start",
-              flex: 1,
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginBottom: 8,
-              }}
-            >
-              <h3>{stat.title}</h3>
-              <div style={{ color: stat.color }}>{stat.icon}</div>
+        <div key={stat.id} className="p-4 border rounded shadow">
+          <div className="flex items-center mb-2">
+            <div className="text-2xl" style={{ color: stat.color }}>
+              {stat.icon}
             </div>
-            <h2>{stat.value}</h2>
-          </Paper>
-        </Grid>
+            <div className="ml-2">
+              <h3 className="text-lg font-semibold">{stat.title}</h3>
+            </div>
+            <div className="ml-auto">
+              <p className="text-sm text-gray-600 font-semibold">
+                {stat.value}
+              </p>
+            </div>
+          </div>
+        </div>
       ))}
-    </Grid>
+    </section>
   );
 };
 export default InventoryStats;
