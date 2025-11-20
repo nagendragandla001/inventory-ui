@@ -18,7 +18,7 @@ const InventoryStats = () => {
     {
       id: "out-of-stock",
       title: "Out of Stock",
-      value: 200,
+      value: 1000,
       icon: <NotebookPen />,
       color: "#f44336",
     },
