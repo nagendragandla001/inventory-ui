@@ -1,9 +1,7 @@
-import { Plus } from "lucide-react";
-import { Link } from "react-router-dom";
 import React, { useEffect } from "react";
 import { fetchProducts } from "../services/product-service";
-import { Button } from "./ui/button";
 import InventoryTable from "./InventoryTable";
+import AddNewProduct from "./AddNewProduct";
 
 export default function InventoryGrid() {
   const [products, setProducts] = React.useState([]);
@@ -23,14 +21,8 @@ export default function InventoryGrid() {
 
   return (
     <section style={{ padding: 16 }}>
-      <div style={{ display: "flex", justifyContent: "flex-end" }}>
-        <Link to="/new-product" style={{ textDecoration: "none" }}>
-          <Button className="cursor-pointer">
-            <Plus /> Add a new Product
-          </Button>
-        </Link>
-      </div>
-
+      <AddNewProduct name="New Product" link="/new-product" />
+      <AddNewProduct name="Another Product" link="/another-product" />
       <InventoryTable products={products} />
     </section>
   );
