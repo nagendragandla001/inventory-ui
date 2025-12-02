@@ -8,11 +8,11 @@ const AddNewProduct = ({ name, link }: { name: string; link: string }) => {
   };
   return (
     <div className="flex justify-end mb-4">
-      {/* <Link to={link} style={{ textDecoration: "none" }}> */}
-      <Button className="cursor-pointer" onClick={handleClick}>
-        <Plus /> {name}
-      </Button>
-      {/* </Link> */}
+      <Link to={link} style={{ textDecoration: "none" }}>
+        <Button className="cursor-pointer" onClick={handleClick}>
+          <Plus /> {name}
+        </Button>
+      </Link>
     </div>
   );
 };

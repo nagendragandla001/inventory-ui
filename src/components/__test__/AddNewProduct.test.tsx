@@ -28,14 +28,14 @@ describe("AddNewProduct Component", () => {
     expect(addNewProductButton).toBeInTheDocument();
   });
 
-  // it("a link is present and href is /another-new-product", () => {
-  //   render(
-  //     <AddNewProduct name="Another Product" link="/another-new-product" />
-  //   );
-  //   const linkEle = screen.getByRole("link", { name: /another product/i });
-  //   expect(linkEle).toBeInTheDocument();
-  //   expect(linkEle).toHaveAttribute("href", "/another-new-product");
-  // });
+  it("a link is present and href is /another-new-product", () => {
+    render(
+      <AddNewProduct name="Another Product" link="/another-new-product" />
+    );
+    const linkEle = screen.getByRole("link", { name: /another product/i });
+    expect(linkEle).toBeInTheDocument();
+    expect(linkEle).toHaveAttribute("href", "/another-new-product");
+  });
 
   it("button clicks are handled", () => {
     const mockClick = vitest.fn();
