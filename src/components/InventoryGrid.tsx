@@ -21,8 +21,20 @@ export default function InventoryGrid() {
 
   return (
     <section style={{ padding: 16 }}>
-      <AddNewProduct name="New Product" link="/new-product" />
-      <AddNewProduct name="Another Product" link="/another-product" />
+      <AddNewProduct
+        name="New Product"
+        link="/new-product"
+        handleClick={() => {
+          console.log("Navigating to /new-product");
+        }}
+      />
+      <AddNewProduct
+        name="Another Product"
+        link="/another-product"
+        handleClick={() => {
+          console.log("Navigating to /another-product");
+        }}
+      />
       <InventoryTable products={products} />
     </section>
   );

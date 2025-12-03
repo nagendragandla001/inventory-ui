@@ -11,9 +11,16 @@ import AddNewProduct from "../AddNewProduct";
  */
 
 describe("AddNewProduct Component", () => {
+  const handleClickEvent = vi.fn();
   beforeEach(() => {
     // Any setup needed before each test can go here
-    render(<AddNewProduct name="New Product" link="/new-product" />);
+    render(
+      <AddNewProduct
+        name="New Product"
+        link="/new-product"
+        handleClick={handleClickEvent}
+      />
+    );
   });
 
   it("render the AddNewProduct Component", () => {
@@ -30,23 +37,26 @@ describe("AddNewProduct Component", () => {
 
   it("a link is present and href is /another-new-product", () => {
     render(
-      <AddNewProduct name="Another Product" link="/another-new-product" />
+      <AddNewProduct
+        name="Another Product"
+        link="/another-new-product"
+        handleClick={handleClickEvent}
+      />
     );
     const linkEle = screen.getByRole("link", { name: /another product/i });
     expect(linkEle).toBeInTheDocument();
     expect(linkEle).toHaveAttribute("href", "/another-new-product");
   });
 
-  it("button clicks are handled", () => {
-    const mockClick = vitest.fn();
+  it("button clicks are handled", async () => {
     const addNewProductButton = screen.getByRole("button", {
       name: /new product/i,
     });
 
     // Act
-    userEvent.click(addNewProductButton);
+    await userEvent.click(addNewProductButton);
 
     // Assert
-    expect(mockClick).not.toHaveBeenCalled();
+    expect(handleClickEvent).toHaveBeenCalled();
   });
 });

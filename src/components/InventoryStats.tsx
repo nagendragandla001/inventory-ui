@@ -33,7 +33,11 @@ const InventoryStats = () => {
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4 mb-8 px-2">
       {PRODUCT_STATS.map((stat) => (
-        <div key={stat.id} className="p-4 border rounded shadow">
+        <div
+          key={stat.id}
+          className="p-4 border rounded shadow"
+          data-testid={stat.id}
+        >
           <div className="flex items-center mb-2">
             <div className="text-2xl" style={{ color: stat.color }}>
               {stat.icon}
